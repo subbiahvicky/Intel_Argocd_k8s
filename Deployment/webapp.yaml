@@ -15,12 +15,12 @@ spec:
         app: inteliverse
         service: inteliverse-webapp
     spec:
-#      hostNetwork: true
+      hostNetwork: true
       containers:
         - name: webapp
           image: 435218030946.dkr.ecr.us-east-2.amazonaws.com/intel_local:webapp
           imagePullPolicy: Always
-    	  ports:
+          ports:
             - containerPort: 5000
               protocol: TCP
           env:
@@ -44,6 +44,6 @@ spec:
     - port: 5000
       targetPort: 5000
       protocol: TCP
-#      nodePort: 30007
   selector:
+    app: inteliverse
     service: inteliverse-webapp
