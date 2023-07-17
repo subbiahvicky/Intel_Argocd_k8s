@@ -1,0 +1,32 @@
+apiVersion: v1
+
+kind: ConfigMap
+metadata:
+  name: inteliverse-influxdb-config
+data:
+  influxdb.conf: |+
+    reporting-disabled = false
+    bind-address = "127.0.0.1:8086"
+    storage-directory = "/var/lib/influxdb2/engine/data"
+    enabled = true
+    auth-enabled = true
+    log-enabled = true
+    write-tracing = false
+    pprof-enabled = true
+    pprof-aut-enabled = true
+    debug-pprof-enabled = false
+    ping-auth-enabled = true
+
+    [data]
+      dir = "/var/lib/influxdb2/engine/data"
+      wal-dir = "/var/lib/influxdb2/engine/wal"
+      query-log-enabled = true
+      trace-logging-enabled = false
+
+    [meta]
+      dir = "/var/lib/influxdb2/engine/meta"
+      retention-autocreate = true
+      logging-enabled = true
+
+    [http]
+      flux-enabled = true

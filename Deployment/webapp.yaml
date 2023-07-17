@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inteliverse-webapp
+  labels:
+    app: inteliverse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: inteliverse-webapp
+  template:
+    metadata:
+      labels:
+        app: inteliverse
+        service: inteliverse-webapp
+    spec:
+      hostNetwork: true
+      containers:
+        - name: webapp
+          image: 435218030946.dkr.ecr.us-east-2.amazonaws.com/intel_local:webapp
+          imagePullPolicy: Always
+    	  ports:
+            - containerPort: 5000
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:5000
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Staging
+      imagePullSecrets:
+        - name: ecr-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inteliverse-webapp
+  labels:
+    app: inteliverse
+    service: inteliverse-webapp
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+#      nodePort: 30007
+  selector:
+    service: inteliverse-webapp

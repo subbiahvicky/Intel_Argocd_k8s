@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: influxdb
+  name: inteliverse-influxdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      hostNetwork: true
+      containers:
+        - image: influxdb:latest
+          imagePullPolicy: Always
+          name: influxdb
+          ports:
+            - containerPort: 8086
+          env:
+            - name: DOCKER_INFLUXDB_DATA_DIR
+              value: /var/lib/influxdb2/engine/data
+            - name: DOCKER_INFLUXDB_INIT_MODE
+              value: setup
+            - name: DOCKER_INFLUXDB_INIT_USERNAME
+              value: inteliverse
+            - name: DOCKER_INFLUXDB_INIT_PASSWORD
+              value: "rcDf4BXC"
+            - name: DOCKER_INFLUXDB_INIT_ORG
+              value: inteliverse
+            - name: DOCKER_INFLUXDB_INIT_BUCKET
+              value: inteliverse-bucket
+            - name: INFLUXDB_HTTP_LOG_ENABLED
+              value: "true"
+            - name: INFLUXDB_HTTP_WRITE_TRACING
+              value: "true"
+            - name: INFLUXDB_DATA_ENGINE_QUERY_LOGGING_ENABLED
+              value: "true"
+            - name: INFLUXDB_DATA_QUERY_LOG_ENABLED
+              value: "true"
+            - name: DOCKER_INFLUXDB_DATA_DELETE_DATA
+              value: "never"
+          envFrom:
+            - secretRef:
+                name: inteliverse-influxdb-secrets
+            - configMapRef:
+                name: inteliverse-influxdb-config
+      volumes:
+      - name: inteliverse-influxdb-secrets
+        secret:
+          secretName: inteliverse-influxdb-secrets
+      - name: inteliverse-influxdb-config
+        configMap:
+          name: inteliverse-influxdb-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: influxdb
+  name: inteliverse-influxdb
+spec:
+  type: NodePort
+  ports:
+  - port: 8086
+    protocol: TCP
+    targetPort: 8086
+    nodePort: 31002
+  selector:
+    app: influxdb
+    
+
