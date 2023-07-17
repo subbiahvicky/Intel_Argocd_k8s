@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: http://gitlab.intellore.com/software/inteliverse_argocd_k8s.git
+    repoURL: https://github.com/subbiahvicky/Intel_Argocd_k8s.git
     targetRevision: main
     path: Deployment
   destination: 
