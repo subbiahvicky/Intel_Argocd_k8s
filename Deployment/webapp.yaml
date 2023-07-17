@@ -15,7 +15,7 @@ spec:
         app: inteliverse
         service: inteliverse-webapp
     spec:
-      hostNetwork: true
+#      hostNetwork: true
       containers:
         - name: webapp
           image: 435218030946.dkr.ecr.us-east-2.amazonaws.com/intel_local:webapp
