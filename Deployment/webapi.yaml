@@ -44,6 +44,7 @@ spec:
     - port: 5001
       targetPort: 5001
       protocol: TCP
+      
       nodePort: 30010
   selector:
     service: inteliverse-webapi
