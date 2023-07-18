@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: inteliverse-webapi
+  name: intel-webapi
   labels:
-    app: inteliverse
+    app: intel
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: inteliverse-webapi
+      service: intel-webapi
   template:
     metadata:
       labels:
-        app: inteliverse
-        service: inteliverse-webapi
+        app: intel
+        service: intel-webapi
     spec:
       hostNetwork: true
       containers:
@@ -34,10 +34,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: inteliverse-webapi
+  name: intel-webapi
   labels:
-    app: inteliverse
-    service: inteliverse-webapi
+    app: intel
+    service: intel-webapi
 spec:
   type: NodePort
   ports:
@@ -47,4 +47,4 @@ spec:
       
       nodePort: 30010
   selector:
-    service: inteliverse-webapi
+    service: intel-webapi
