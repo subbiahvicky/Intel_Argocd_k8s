@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: inteliverse-webapp
+  name: intel-webapp
   labels:
-    app: inteliverse
+    app: intel
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: inteliverse-webapp
+      service: intel-webapp
   template:
     metadata:
       labels:
-        app: inteliverse
-        service: inteliverse-webapp
+        app: intel
+        service: intel-webapp
     spec:
       hostNetwork: true
       containers:
@@ -34,10 +34,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: inteliverse-webapp
+  name: intel-webapp
   labels:
-    app: inteliverse
-    service: inteliverse-webapp
+    app: intel
+    service: intel-webapp
 spec:
   type: ClusterIP
   ports:
@@ -45,5 +45,5 @@ spec:
       targetPort: 5000
       protocol: TCP
   selector:
-    app: inteliverse
-    service: inteliverse-webapp
+    app: intel
+    service: intel-webapp
