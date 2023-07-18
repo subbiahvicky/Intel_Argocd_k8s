@@ -2,7 +2,7 @@ apiVersion: v1
 
 kind: ConfigMap
 metadata:
-  name: inteliverse-influxdb-config
+  name: intel-influxdb-config
 data:
   influxdb.conf: |+
     reporting-disabled = false
