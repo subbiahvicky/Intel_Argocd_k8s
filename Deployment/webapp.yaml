@@ -18,7 +18,7 @@ spec:
       hostNetwork: true
       containers:
         - name: webapp
-          image: 435218030946.dkr.ecr.us-east-2.amazonaws.com/intel_local:webapp3
+          image: 435218030946.dkr.ecr.us-east-2.amazonaws.com/intel_local:webapp
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
