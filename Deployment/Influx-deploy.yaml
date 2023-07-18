@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: influxdb
-  name: inteliverse-influxdb
+  name: intel-influxdb
 spec:
   replicas: 1
   selector:
@@ -46,16 +46,16 @@ spec:
               value: "never"
           envFrom:
             - secretRef:
-                name: inteliverse-influxdb-secrets
+                name: intel-influxdb-secrets
             - configMapRef:
-                name: inteliverse-influxdb-config
+                name: intel-influxdb-config
       volumes:
-      - name: inteliverse-influxdb-secrets
+      - name: intel-influxdb-secrets
         secret:
-          secretName: inteliverse-influxdb-secrets
-      - name: inteliverse-influxdb-config
+          secretName: intel-influxdb-secrets
+      - name: intel-influxdb-config
         configMap:
-          name: inteliverse-influxdb-config
+          name: intel-influxdb-config
 
 ---
 apiVersion: v1
@@ -63,7 +63,7 @@ kind: Service
 metadata:
   labels:
     app: influxdb
-  name: inteliverse-influxdb
+  name: intel-influxdb
 spec:
   type: NodePort
   ports:
