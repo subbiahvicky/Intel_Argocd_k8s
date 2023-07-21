@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         app: intel
-        service: intel-webapi
+        service: intel-webapi1
     spec:
       hostNetwork: true
       containers:
