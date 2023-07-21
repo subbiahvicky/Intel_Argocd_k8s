@@ -13,12 +13,12 @@ spec:
     metadata:
       labels:
         app: intel
-        service: intel-webapi1
+        service: intel-webapi
     spec:
       hostNetwork: true
       containers:
         - name: webapi
-          image: 878426398556.dkr.ecr.ap-south-1.amazonaws.com/argocd:webapp
+          image: 878426398556.dkr.ecr.ap-south-1.amazonaws.com/argocd:webapp1
           imagePullPolicy: Always
           ports:
             - containerPort: 5001
