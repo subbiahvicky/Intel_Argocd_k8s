@@ -18,7 +18,7 @@ spec:
       hostNetwork: true
       containers:
         - name: webapp
-          image: 435218030946.dkr.ecr.us-east-2.amazonaws.com/intel_local:webapp
+          image: 878426398556.dkr.ecr.ap-south-1.amazonaws.com/argocd:webapp
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
