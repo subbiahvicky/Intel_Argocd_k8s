@@ -5,7 +5,7 @@ metadata:
   labels:
     app: intel
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       service: intel-webapi
